@@ -12,8 +12,12 @@ def create_plan(user_message: str):
 
         "allowed_tools": [],
 
-        "reason": ""
+        "reasons": []
     }
+
+    # --------------------
+    # Todo
+    # --------------------
 
     if any(word in message for word in [
         "todo",
@@ -23,6 +27,7 @@ def create_plan(user_message: str):
         "priority",
         "finish"
     ]):
+
         plan["context"]["todos"] = True
 
         plan["allowed_tools"] += [
@@ -32,16 +37,21 @@ def create_plan(user_message: str):
             "delete_todo"
         ]
 
-        plan["reason"] = "Todo management"
+        plan["reasons"].append("Todo management")
+
+    # --------------------
+    # Memory
+    # --------------------
 
     if any(word in message for word in [
         "remember",
-        "my",
-        "me",
         "goal",
         "routine",
-        "preference"
+        "preference",
+        "wake up",
+        "name"
     ]):
+
         plan["context"]["memory"] = True
 
         plan["allowed_tools"] += [
@@ -49,24 +59,55 @@ def create_plan(user_message: str):
             "get_memory"
         ]
 
-        plan["reason"] = "Memory lookup"
+        plan["reasons"].append("Memory lookup")
+
+    # --------------------
+    # Pomodoro
+    # --------------------
 
     if any(word in message for word in [
         "pomodoro",
         "focus",
         "study"
     ]):
+
         plan["allowed_tools"].append("create_pomodoro")
+        plan["reasons"].append("Focus planning")
+
+    # --------------------
+    # Statistics
+    # --------------------
 
     if any(word in message for word in [
         "statistics",
         "progress",
         "completed"
     ]):
+
         plan["context"]["statistics"] = True
 
+        plan["allowed_tools"] += ["get_statistics","save_completed_session"]
+
+        plan["reasons"].append("Statistics lookup")
+
+    # --------------------
+    # Habits
+    # --------------------
+
+    if any(word in message for word in [
+        "habit",
+        "track",
+        "streak",
+        "daily",
+        "routine"
+    ]):
+        plan["context"]["habits"] = True
         plan["allowed_tools"] += [
-            "get_statistics"
+        "add_habit",
+        "list_habits",
+        "complete_habit"
         ]
+
+        plan["reasons"].append("Habit tracking")
 
     return plan

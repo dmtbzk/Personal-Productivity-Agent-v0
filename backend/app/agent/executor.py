@@ -17,6 +17,13 @@ from app.tools.statistics import (
     save_completed_session,
     get_statistics,
 )
+
+from app.tools.habits import (
+    add_habit,
+    list_habits,
+    complete_habit,
+)
+
 import json
 
 TOOL_FUNCTIONS = {
@@ -33,6 +40,10 @@ TOOL_FUNCTIONS = {
 
     "save_completed_session": save_completed_session,
     "get_statistics": get_statistics,
+
+    "add_habit": add_habit,
+    "list_habits": list_habits,
+    "complete_habit": complete_habit,
 }
 
 
