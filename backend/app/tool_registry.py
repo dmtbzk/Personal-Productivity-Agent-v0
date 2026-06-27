@@ -39,19 +39,41 @@ TOOLS = [
             "required": ["index"]
         }
     },
-    {
-        "type": "function",
-        "name": "save_memory",
-        "description": "Saves an important long-term note about the user, their goals, preferences, or working style.",
+    {    "type": "function",
+        "name": "delete_todo",
+        "description": "Deletes a todo item by its id. Use this when the user wants to remove or delete a task.",
         "parameters": {
             "type": "object",
             "properties": {
-                "note": {
-                    "type": "string",
-                    "description": "The memory note to save."
+                "index": {
+                    "type": "integer",
+                    "description": "The id of the todo item to delete."
                 }
             },
-            "required": ["note"]
+            "required": ["index"]
+        }
+    },
+   {
+        "type": "function",
+        "name": "save_memory",
+        "description": "Saves structured long-term memory about the user. Use this when the user tells the assistant something important about their profile, goals, preferences, habits, routines, or working style.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "The memory category, for example: profile, preference, goal, habit, routine, working_style."
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The specific memory key, for example: name, city, wake_up_time, current_goal."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The memory value to save."
+                }
+            },
+            "required": ["category", "key", "value"]
         }
     },
     {

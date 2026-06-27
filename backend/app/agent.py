@@ -4,10 +4,11 @@ import json
 
 from app.tool_registry import TOOLS
 
-from app.tools.todo import add_todo, list_todos, complete_todo
+from app.tools.todo import add_todo, list_todos, complete_todo, delete_todo
 from app.tools.memory import save_memory, get_memory
 from app.tools.pomodoro import create_pomodoro
 from app.tools.statistics import save_completed_session, get_statistics
+from app.tool_dispatcher import run_tool
 
 load_dotenv()
 
@@ -32,33 +33,7 @@ def run_agent(user_message: str) -> str:
             print("Tool selected:", tool_name)
             print("Tool arguments:", arguments)
 
-            if tool_name == "add_todo":
-                tool_result = add_todo(arguments["task"])
-
-            elif tool_name == "list_todos":
-                tool_result = str(list_todos())
-
-            elif tool_name == "complete_todo":
-                tool_result = complete_todo(arguments["index"])
-
-            elif tool_name == "save_memory":
-                tool_result = save_memory(arguments["note"])
-
-            elif tool_name == "get_memory":
-                tool_result = str(get_memory())
-
-            elif tool_name == "create_pomodoro":
-                sessions = arguments.get("sessions", 1)
-                tool_result = str(create_pomodoro(arguments["task"], sessions))
-
-            elif tool_name == "save_completed_session":
-                tool_result = save_completed_session(arguments["task"])
-
-            elif tool_name == "get_statistics":
-                tool_result = str(get_statistics())
-
-            else:
-                tool_result = "Unknown tool"
+            tool_result = run_tool(tool_name, arguments)
 
             print("Tool result:", tool_result)
 

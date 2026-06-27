@@ -14,7 +14,7 @@ def list_todos():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM todos")
-    todos = cursor.fetchall()
+    rows = cursor.fetchall()
     conn.close()
     return [
         {
@@ -32,3 +32,11 @@ def complete_todo(index: int):
     conn.commit()
     conn.close()
     return f"Todo completed: {index}"
+
+def delete_todo(index: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM todos WHERE id = ?", (index,))
+    conn.commit()
+    conn.close()
+    return f"Todo deleted: {index}"
