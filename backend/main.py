@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.schemas import ChatRequest, ChatResponse
-from app.agent import run_agent
-from app.database import init_db
+from app.agent.orchestrator import run
+from app.api.schemas import ChatRequest, ChatResponse
+from app.database.connection import init_db
 
 app = FastAPI()
 
@@ -30,5 +30,5 @@ def health():
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
-    answer = run_agent(request.message)
+    answer = run(request.message)
     return ChatResponse(answer=answer)

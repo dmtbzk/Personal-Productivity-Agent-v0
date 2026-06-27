@@ -1,4 +1,4 @@
-from app.database import get_connection
+from app.database.connection import get_connection
 
 
 def normalize_category(category: str, key: str):
@@ -94,7 +94,7 @@ def get_memory():
         }
         for row in rows
     ]
-    
+
 def search_memory(query: str):
     conn = get_connection()
     cursor = conn.cursor()

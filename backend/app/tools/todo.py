@@ -1,4 +1,5 @@
-from app.database import get_connection
+from app.database.connection import get_connection
+
 todos = []
 
 def add_todo(task: str):
