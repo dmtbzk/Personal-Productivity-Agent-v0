@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.agent.orchestrator import run
-from app.api.schemas import ChatRequest, ChatResponse
+from app.api.routes import router
 from app.database.connection import init_db
 
 app = FastAPI()
@@ -17,18 +16,4 @@ app.add_middleware(
 
 init_db()
 
-
-@app.get("/")
-def home():
-    return {"message": "Personal Productivity Agent API"}
-
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-
-@app.post("/chat", response_model=ChatResponse)
-def chat(request: ChatRequest):
-    answer = run(request.message)
-    return ChatResponse(answer=answer)
+app.include_router(router)
