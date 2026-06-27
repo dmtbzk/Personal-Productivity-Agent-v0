@@ -1,5 +1,5 @@
 from app.database.connection import get_connection
-
+from datetime import datetime, timedelta
 
 def add_habit(name: str):
     conn = get_connection()
@@ -33,6 +33,29 @@ def add_habit(name: str):
     return f"Habit added: {name}"
 
 
+def calculate_streak(completed_dates):
+
+    if not completed_dates:
+        return 0
+
+    unique_dates = sorted(
+        set(completed_dates),
+        reverse=True
+    )
+
+    today = datetime.now().date()
+    streak = 0
+
+    for date_value in unique_dates:
+        completed_date = datetime.strptime(date_value, "%Y-%m-%d").date()
+        expected_date = today - timedelta(days=streak)
+        if completed_date == expected_date:
+            streak += 1
+        else:
+            break
+
+    return streak
+
 def list_habits():
     conn = get_connection()
     cursor = conn.cursor()
@@ -50,19 +73,40 @@ def list_habits():
         GROUP BY habits.id
     """)
 
-    rows = cursor.fetchall()
+    habit_rows = cursor.fetchall()
+
+    habits = []
+
+    for habit in habit_rows:
+        habit_id = habit[0]
+
+        cursor.execute(
+            """
+            SELECT DATE(completed_at)
+            FROM habit_logs
+            WHERE habit_id = ?
+            ORDER BY completed_at DESC
+            """,
+            (habit_id,)
+        )
+
+        completed_dates = [
+            row[0]
+            for row in cursor.fetchall()
+        ]
+
+        habits.append({
+            "id": habit[0],
+            "name": habit[1],
+            "created_at": habit[2],
+            "completed_count": habit[3],
+            "last_completed_at": habit[4],
+            "current_streak": calculate_streak(completed_dates),
+        })
+
     conn.close()
 
-    return [
-        {
-            "id": row[0],
-            "name": row[1],
-            "created_at": row[2],
-            "completed_count": row[3],
-            "last_completed_at": row[4],
-        }
-        for row in rows
-    ]
+    return habits
 
 
 def complete_habit(habit_id: int):
