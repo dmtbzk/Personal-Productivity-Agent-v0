@@ -146,3 +146,9 @@ TOOLS = [
         }
     }
 ]
+
+def get_allowed_tools(allowed_tool_names: list[str]):
+    return [
+        tool for tool in TOOLS
+        if tool["name"] in allowed_tool_names
+    ]

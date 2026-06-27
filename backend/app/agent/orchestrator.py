@@ -4,9 +4,10 @@ from app.agent.responder import (
 )
 from app.agent.executor import execute_tool_calls
 from app.context.context_builder import build_context
-
+from app.agent.planner import create_plan
 
 def run(user_message: str) -> str:
+    plan = create_plan(user_message)
     context = build_context(user_message)
 
     system_prompt = f"""
@@ -20,7 +21,8 @@ def run(user_message: str) -> str:
 
     response = create_initial_response(
         system_prompt,
-        user_message
+        user_message,
+        plan["allowed_tools"]
     )
 
     tool_outputs = execute_tool_calls(response)
