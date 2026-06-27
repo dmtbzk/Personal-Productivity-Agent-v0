@@ -8,6 +8,7 @@ from app.tools.todo import (
 from app.tools.memory import (
     save_memory,
     get_memory,
+    search_memory,
 )
 
 from app.tools.pomodoro import create_pomodoro

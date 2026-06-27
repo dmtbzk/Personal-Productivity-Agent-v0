@@ -39,7 +39,7 @@ TOOLS = [
             "required": ["index"]
         }
     },
-    {    "type": "function",
+    {   "type": "function",
         "name": "delete_todo",
         "description": "Deletes a todo item by its id. Use this when the user wants to remove or delete a task.",
         "parameters": {
@@ -84,6 +84,21 @@ TOOLS = [
             "type": "object",
             "properties": {},
             "required": []
+        }
+    },
+    {
+        "type": "function",
+        "name": "search_memory",
+        "description": "Searches for saved notes about the user. Use this when the user asks for information about their profile, goals, preferences, habits, routines, or working style.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "The query to search for in the user's memory."
+                }
+            },
+            "required": ["query"]
         }
     },
     {

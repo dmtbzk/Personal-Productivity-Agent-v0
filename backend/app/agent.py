@@ -3,11 +3,7 @@ from dotenv import load_dotenv
 import json
 
 from app.tool_registry import TOOLS
-
-from app.tools.todo import add_todo, list_todos, complete_todo, delete_todo
-from app.tools.memory import save_memory, get_memory
-from app.tools.pomodoro import create_pomodoro
-from app.tools.statistics import save_completed_session, get_statistics
+from app.tools.memory import search_memory
 from app.tool_dispatcher import run_tool
 
 load_dotenv()
@@ -16,9 +12,30 @@ client = OpenAI()
 
 
 def run_agent(user_message: str) -> str:
+    relevant_memories = search_memory(user_message)
+
+    system_prompt = f"""
+You are a personal productivity assistant.
+
+Use the user's saved memory when it is relevant.
+Do not mention memory unless it helps the answer.
+
+Relevant user memory:
+{relevant_memories}
+"""
+
     response = client.responses.create(
         model="gpt-4o-mini",
-        input=user_message,
+        input=[
+            {
+                "role": "system",
+                "content": system_prompt
+            },
+            {
+                "role": "user",
+                "content": user_message
+            }
+        ],
         tools=TOOLS
     )
 
