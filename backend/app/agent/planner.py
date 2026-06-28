@@ -188,13 +188,29 @@ def create_llm_plan(user_message: str):
                 - delete_calendar_event
 
                 Rules:
-                - If the user is greeting or casual chatting, allow no tools.
-                - If the user asks what to work on, plan their day, prioritize, or organize work, include todos.
-                - If the user mentions routines, preferences, goals, name, wake-up time, or asks based on personal info, include memory.
-                - If the user asks about progress, completed sessions, stats, or performance, include statistics.
-                - If the user asks about habits, streaks, daily actions, or tracking habits, include habits.
-                - If the user asks about schedule, meetings, appointments, deadlines, events, or calendar, include calendar.
-                - Only allow tools relevant to the request.
+                Memory rules:
+                - Use get_memory only if answering requires previously saved personal information.
+                - Use save_memory only if the user explicitly asks you to remember something, or they provide a long-term fact about themselves.
+                - Do NOT use save_memory for temporary conversation details.
+
+                Todo rules:
+                - Use add_todo only when the user wants to create a task.
+                - Use list_todos when the user asks what to do, wants to prioritize work, or asks about existing tasks.
+                - Do not allow add_todo unless a new task is actually requested.
+
+                Statistics rules:
+                - Use save_completed_session only when the user explicitly says they finished or completed a work session.
+                - Use get_statistics only when the user asks about progress or productivity.
+
+                Habit rules:
+                - Use add_habit only when creating a new habit.
+                - Use complete_habit only when the user says they completed a habit.
+                - Use list_habits only when the user asks about their habits.
+
+                Calendar rules:
+                - Use add_calendar_event only when the user wants to schedule a new event.
+                - Use delete_calendar_event only when they ask to remove an event.
+                - Use list_calendar_events only when they ask about their schedule or events.
 
                 Return exactly this JSON shape:
                 {
