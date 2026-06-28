@@ -1,48 +1,153 @@
 # 🧠 Personal Productivity Agent
 
-> I wanted to understand how modern AI agents actually work.  
-> So I built one from scratch.
+<p align="center">
 
-**Personal Productivity Agent** is a modular AI agent architecture built with **Python, FastAPI, OpenAI Responses API, SQLite, and React**.
+Python
+FastAPI
+React
+TypeScript
+SQLite
+OpenAI
 
-This is not just a chatbot.  
-It is a tool-using, memory-aware, context-driven personal productivity agent.
+</p>
 
----
+<p align="center">
 
-## ✨ Highlights
+A modular AI Agent built from scratch using Python, FastAPI, OpenAI Responses API and React.
 
-- 🧠 **LLM Planner** — understands user intent and selects the right tools
-- 🧩 **Context Builder** — injects only relevant context into the model
-- 🛠️ **Tool Calling** — executes real backend functions
-- 🧰 **Tool Filtering** — the model only sees tools allowed by the planner
-- 💾 **SQLite Persistence** — todos, memory, habits, calendar and conversations are stored
-- 🧠 **Long-Term Memory** — stores stable user facts, routines, goals and preferences
-- 💬 **Conversation Memory** — remembers recent messages for follow-up understanding
-- ✅ **Todo Manager** — add, list, complete and delete tasks
-- 🔁 **Habit Tracker** — habit progress, streaks and duplicate protection
-- 📅 **Calendar Module** — schedule and list upcoming events
-- 📊 **Statistics Module** — track completed focus sessions
-- 🧱 **Modular Architecture** — planner, executor, responder, context and tools are separated
-- ⚛️ **React Frontend** — planned as the user-facing interface
+No LangChain • No CrewAI • No AutoGen
+
+</p>
 
 ---
 
-## 🚫 No Framework Magic
+## 🚀 About
 
-This project does **not** use:
+Most AI tutorials stop here:
 
-- LangChain
-- CrewAI
-- AutoGen
+text User    │    ▼ OpenAI API    │    ▼ Response 
 
-Everything is built manually to understand the real architecture behind AI agents.
+Real AI agents are far more sophisticated.
+
+They need to:
+
+- understand the user's intent
+- retrieve the correct context
+- remember previous conversations
+- manage long-term memory
+- choose the right tools
+- execute backend functions
+- persist data
+- generate grounded responses
+
+This project was built to understand and implement those layers manually instead of relying on existing AI agent frameworks.
+
+The goal is not simply to build a chatbot.
+
+The goal is to build the architecture behind one.
 
 ---
 
-## 🧭 Why I Built This
+# ✨ Features
 
-Most AI tutorials stop at:
+## 🧠 AI Agent
 
-```text
-User → LLM → Response
+- Intent-based LLM Planner
+- Dynamic Tool Selection
+- Tool Calling via OpenAI Responses API
+- Context-Aware Responses
+- Conversation Memory
+- Long-Term Memory
+- Function Execution Pipeline
+- Modular AI Architecture
+
+---
+
+## 📋 Productivity
+
+- Todo Management
+- Habit Tracking
+- Calendar Events
+- Productivity Statistics
+- Daily Planning
+- Focus Session Tracking
+
+---
+
+## 💾 Memory
+
+- Structured Long-Term Memory
+- Conversation History
+- Memory Search
+- Context Injection
+- User Preferences
+- Goals & Routines
+
+---
+
+## 🏗 Backend
+
+- FastAPI REST API
+- SQLite Persistence
+- Modular Service Layer
+- Tool Registry
+- Context Builder
+- Planner
+- Executor
+- Responder
+- Orchestrator
+
+---
+
+## 🎨 Frontend (In Progress)
+
+- React
+- TypeScript
+- Vite
+- Modern Dashboard
+- Chat Interface
+- Productivity Panels
+- Agent Debug View
+
+---
+
+# 🏛 Architecture
+
+text                            User                              │                              ▼                     React Frontend                              │                              ▼                      FastAPI Backend                              │                              ▼                       Orchestrator                              │         ┌────────────────────┼────────────────────┐         ▼                    ▼                    ▼   LLM Planner         Context Builder        Responder         │                    │                    │         │                    ▼                    ▼         │            Combined Context      OpenAI Responses API         │                    │                    │         └────────────────────┴────────────────────┘                              │                              ▼                       Function Calling                              │                              ▼                           Executor                              │          ┌───────────────────┼───────────────────┐          ▼                   ▼                   ▼       Todos             Long-Term Memory     Calendar          ▼                   ▼                   ▼       Habits           Conversation DB     Statistics                              │                              ▼                           SQLite 
+
+---
+
+# 🎯 Design Principles
+
+This project follows a modular architecture where every component has a single responsibility.
+
+| Component | Responsibility |
+|-----------|----------------|
+| Planner | Understands user intent |
+| Context Builder | Collects only relevant context |
+| Tool Registry | Describes available tools |
+| Executor | Executes Python functions |
+| Responder | Generates the final response |
+| Services | Business logic |
+| SQLite | Persistent storage |
+
+---
+
+# 🔥 Current Capabilities
+
+- ✅ Understand user intent
+- ✅ Select relevant tools automatically
+- ✅ Filter available tools
+- ✅ Execute backend functions
+- ✅ Persist user data
+- ✅ Remember previous conversations
+- ✅ Store long-term memory
+- ✅ Track productivity
+- ✅ Manage habits
+- ✅ Manage calendar events
+- ✅ Plan daily work
+- ✅ Track focus sessions
+
+---
+
+> "I wanted to understand how ChatGPT-like agents work internally, so I built one layer by layer instead of hiding everything behind a framework."
