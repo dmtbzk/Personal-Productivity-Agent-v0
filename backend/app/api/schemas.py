@@ -22,6 +22,17 @@ class TodoItem(BaseModel):
     status: str
 
 
+class StatsResponse(BaseModel):
+    total_todos: int
+    completed_todos: int
+    in_progress_todos: int
+    total_habits: int
+    total_habit_completions: int
+    total_sessions: int
+    sessions_by_day: dict
+    recent_sessions: list
+
+
 class CalendarEvent(BaseModel):
     id: int
     title: str

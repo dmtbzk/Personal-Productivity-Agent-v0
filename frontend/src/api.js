@@ -32,6 +32,12 @@ export async function completeHabit(id) {
   return res.json()
 }
 
+export async function fetchStats() {
+  const res = await fetch(`${BASE}/stats`)
+  if (!res.ok) throw new Error('Failed to fetch stats')
+  return res.json()
+}
+
 export async function fetchCalendar() {
   const res = await fetch(`${BASE}/calendar`)
   if (!res.ok) throw new Error('Failed to fetch calendar')

@@ -18,6 +18,7 @@ function Header({ page, onNavigate }) {
             { key: 'tasks',  label: '✓ Tasks' },
             { key: 'habits',   label: '🌱 Habits' },
             { key: 'calendar', label: '📅 Calendar' },
+            { key: 'stats',    label: '📊 Stats' },
           ].map(({ key, label }) => (
             <button
               key={key}
