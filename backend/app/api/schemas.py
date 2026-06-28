@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Literal
+from typing import Literal, Optional
 
 
 class ChatRequest(BaseModel):
@@ -20,3 +20,12 @@ class TodoItem(BaseModel):
     task: str
     done: bool
     status: str
+
+
+class HabitItem(BaseModel):
+    id: int
+    name: str
+    created_at: str
+    completed_count: int
+    last_completed_at: Optional[str]
+    current_streak: int

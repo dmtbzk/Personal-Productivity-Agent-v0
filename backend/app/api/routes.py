@@ -1,8 +1,9 @@
 from fastapi import APIRouter
 
-from app.api.schemas import ChatRequest, ChatResponse, TodoStatusUpdate, TodoItem
+from app.api.schemas import ChatRequest, ChatResponse, TodoStatusUpdate, TodoItem, HabitItem
 from app.agent.orchestrator import run
 from app.tools.todo import list_todos, update_todo_status, delete_todo
+from app.tools.habits import list_habits, complete_habit
 
 router = APIRouter()
 
@@ -38,3 +39,14 @@ def update_status(todo_id: int, body: TodoStatusUpdate):
 def delete_todo_route(todo_id: int):
     delete_todo(todo_id)
     return {"status": "ok"}
+
+
+@router.get("/habits", response_model=list[HabitItem])
+def get_habits():
+    return list_habits()
+
+
+@router.post("/habits/{habit_id}/complete")
+def complete_habit_route(habit_id: int):
+    result = complete_habit(habit_id)
+    return {"message": result}

@@ -13,13 +13,17 @@ function Header({ page, onNavigate }) {
         </div>
 
         <nav className="header-nav">
-          {['chat', 'tasks'].map((name) => (
+          {[
+            { key: 'chat',   label: '💬 Chat' },
+            { key: 'tasks',  label: '✓ Tasks' },
+            { key: 'habits', label: '🌱 Habits' },
+          ].map(({ key, label }) => (
             <button
-              key={name}
-              className={`header-nav-btn ${page === name ? 'header-nav-btn--active' : ''}`}
-              onClick={() => onNavigate(name)}
+              key={key}
+              className={`header-nav-btn ${page === key ? 'header-nav-btn--active' : ''}`}
+              onClick={() => onNavigate(key)}
             >
-              {name === 'chat' ? '💬 Chat' : '✓ Tasks'}
+              {label}
             </button>
           ))}
         </nav>

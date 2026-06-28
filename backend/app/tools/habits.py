@@ -17,8 +17,8 @@ def add_habit(name: str):
 
     if existing_habit:
         conn.close()
+        return f"Habit already exists: {name}"
 
-    return f"Habit already exists: {name}"
     cursor.execute(
         """
         INSERT INTO habits (name)
