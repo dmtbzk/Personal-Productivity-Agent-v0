@@ -59,47 +59,33 @@ Instead of relying on frameworks like LangChain, CrewAI, or AutoGen, every core 
 
 ## 🏗 Architecture
 
-┌───────────────┐
-│     User      │
-└───────┬───────┘
-        │
-        ▼
-┌────────────────────┐
-│  React Frontend    │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│  FastAPI Backend   │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│    Orchestrator    │
-└─────────┬──────────┘
-          │
-          ▼
-┌──────────────────────────────────────────┐
-│ LLM Planner │ Context Builder │ Responder │
-└─────────┬────────────────────────────────┘
-          │
-          ▼
-┌────────────────────┐
-│ OpenAI Responses API │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│     Executor       │
-└─────────┬──────────┘
-          │
-          ▼
-┌──────────────────────────────────────────────────┐
-│ Todos │ Habits │ Calendar │ Memory │ Statistics │
-│ Conversation                              │
-└─────────┬────────────────────────────────────────┘
-          │
-          ▼
-┌────────────────────┐
-│      SQLite        │
-└────────────────────┘
+```mermaid
+flowchart TD
+
+A(User)
+B(React Frontend)
+C(FastAPI Backend)
+D(Orchestrator)
+E(Planner)
+F(Context Builder)
+G(Responder)
+H(OpenAI Responses API)
+I(Tool Executor)
+J[(SQLite)]
+
+A --> B
+B --> C
+C --> D
+
+D --> E
+D --> F
+D --> G
+
+E --> H
+F --> H
+G --> H
+
+H --> I
+
+I --> J
+```
