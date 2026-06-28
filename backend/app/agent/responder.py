@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 
-from app.tool_registry import get_allowed_tools
+from app.tool_registry.registry import get_allowed_tools
 
 load_dotenv()
 

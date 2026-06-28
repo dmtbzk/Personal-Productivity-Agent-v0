@@ -2,14 +2,16 @@ from app.agent.responder import (
     create_initial_response,
     create_final_response,
 )
+from app.tools.conversation import save_conversation_message
+
 from app.agent.executor import execute_tool_calls
 from app.context.context_builder import build_context
-from app.agent.planner import create_plan
 from app.agent.planner import create_llm_plan
 
 
 
 def run(user_message: str) -> str:
+    save_conversation_message("user", user_message)
     plan = create_llm_plan(user_message)
     print("Plan:", plan)
 
@@ -45,6 +47,13 @@ def run(user_message: str) -> str:
             response.id,
             tool_outputs
         )
-        return final_response.output_text
 
-    return response.output_text
+        answer = final_response.output_text
+        save_conversation_message("assistant", answer)
+
+        return answer
+
+    answer = response.output_text
+    save_conversation_message("assistant", answer)
+
+    return answer
