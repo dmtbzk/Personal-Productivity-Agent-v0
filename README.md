@@ -113,7 +113,40 @@ The goal is to build the architecture behind one.
 
 # 🏛 Architecture
 
-text                            User                              │                              ▼                     React Frontend                              │                              ▼                      FastAPI Backend                              │                              ▼                       Orchestrator                              │         ┌────────────────────┼────────────────────┐         ▼                    ▼                    ▼   LLM Planner         Context Builder        Responder         │                    │                    │         │                    ▼                    ▼         │            Combined Context      OpenAI Responses API         │                    │                    │         └────────────────────┴────────────────────┘                              │                              ▼                       Function Calling                              │                              ▼                           Executor                              │          ┌───────────────────┼───────────────────┐          ▼                   ▼                   ▼       Todos             Long-Term Memory     Calendar          ▼                   ▼                   ▼       Habits           Conversation DB     Statistics                              │                              ▼                           SQLite 
+                           User
+                             │
+                             ▼
+                    React Frontend
+                             │
+                             ▼
+                     FastAPI Backend
+                             │
+                             ▼
+                      Orchestrator
+                             │
+        ┌────────────────────┼────────────────────┐
+        ▼                    ▼                    ▼
+  LLM Planner         Context Builder        Responder
+        │                    │                    │
+        │                    ▼                    ▼
+        │            Combined Context      OpenAI Responses API
+        │                    │                    │
+        └────────────────────┴────────────────────┘
+                             │
+                             ▼
+                      Function Calling
+                             │
+                             ▼
+                          Executor
+                             │
+         ┌───────────────────┼───────────────────┐
+         ▼                   ▼                   ▼
+      Todos             Long-Term Memory     Calendar
+         ▼                   ▼                   ▼
+      Habits           Conversation DB     Statistics
+                             │
+                             ▼
+                          SQLite
 
 ---
 
