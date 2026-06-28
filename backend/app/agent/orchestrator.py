@@ -13,12 +13,12 @@ from app.agent.planner import create_llm_plan
 
 
 def run(user_message: str) -> str:
-    save_user_message(user_message)
+    
     plan = create_llm_plan(user_message)
     print("Plan:", plan)
 
     context = build_context(plan, user_message)
-
+    save_user_message(user_message)
     system_prompt = f"""
     You are a personal productivity assistant.
 
