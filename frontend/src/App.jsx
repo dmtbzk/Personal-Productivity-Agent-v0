@@ -1,14 +1,18 @@
+import { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ChatPage from './components/ChatPage'
+import TodoPage from './components/TodoPage'
 import './App.css'
 
 function App() {
+  const [page, setPage] = useState('chat')
+
   return (
     <div className="app-layout">
-      <Header />
+      <Header page={page} onNavigate={setPage} />
       <main className="app-main">
-        <ChatPage />
+        {page === 'chat' ? <ChatPage /> : <TodoPage />}
       </main>
       <Footer />
     </div>

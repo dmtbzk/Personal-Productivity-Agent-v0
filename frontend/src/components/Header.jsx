@@ -1,6 +1,6 @@
 import './Header.css'
 
-function Header() {
+function Header({ page, onNavigate }) {
   return (
     <header className="header">
       <div className="header-inner">
@@ -11,6 +11,19 @@ function Header() {
             <div className="header-subtitle">by Demet Bozkurt</div>
           </div>
         </div>
+
+        <nav className="header-nav">
+          {['chat', 'tasks'].map((name) => (
+            <button
+              key={name}
+              className={`header-nav-btn ${page === name ? 'header-nav-btn--active' : ''}`}
+              onClick={() => onNavigate(name)}
+            >
+              {name === 'chat' ? '💬 Chat' : '✓ Tasks'}
+            </button>
+          ))}
+        </nav>
+
         <div className="header-status">
           <span className="status-dot" aria-hidden="true" />
           Online
