@@ -59,33 +59,47 @@ Instead of relying on frameworks like LangChain, CrewAI, or AutoGen, every core 
 
 ## 🏗 Architecture
 
-User
- │
- ▼
-React Frontend
- │
- ▼
-FastAPI Backend
- │
- ▼
-Orchestrator
- │
- ├── LLM Planner
- ├── Context Builder
- ├── Responder
- │
- ▼
-OpenAI Responses API
- │
- ▼
-Executor
- │
- ├── Todos
- ├── Habits
- ├── Calendar
- ├── Memory
- ├── Statistics
- └── Conversation
- │
- ▼
-SQLite
+┌───────────────┐
+│     User      │
+└───────┬───────┘
+        │
+        ▼
+┌────────────────────┐
+│  React Frontend    │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│  FastAPI Backend   │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│    Orchestrator    │
+└─────────┬──────────┘
+          │
+          ▼
+┌──────────────────────────────────────────┐
+│ LLM Planner │ Context Builder │ Responder │
+└─────────┬────────────────────────────────┘
+          │
+          ▼
+┌────────────────────┐
+│ OpenAI Responses API │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│     Executor       │
+└─────────┬──────────┘
+          │
+          ▼
+┌──────────────────────────────────────────────────┐
+│ Todos │ Habits │ Calendar │ Memory │ Statistics │
+│ Conversation                              │
+└─────────┬────────────────────────────────────────┘
+          │
+          ▼
+┌────────────────────┐
+│      SQLite        │
+└────────────────────┘
