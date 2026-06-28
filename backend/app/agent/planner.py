@@ -110,4 +110,31 @@ def create_plan(user_message: str):
 
         plan["reasons"].append("Habit tracking")
 
+    # --------------------
+    # Calendar
+    # --------------------
+
+    
+    if any(word in message for word in [
+        "calendar",
+        "meeting",
+        "appointment",
+        "schedule",
+        "event",
+        "deadline",
+        "tomorrow",
+        "today at",
+        "next week",
+        "remind"
+    ]):
+        plan["context"]["calendar"] = True
+
+        plan["allowed_tools"] += [
+            "add_calendar_event",
+            "list_calendar_events",
+            "delete_calendar_event"
+        ]
+
+        plan["reasons"].append("Calendar management")
+
     return plan

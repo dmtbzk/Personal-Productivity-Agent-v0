@@ -24,6 +24,12 @@ from app.tools.habits import (
     complete_habit,
 )
 
+from app.tools.calendar import (
+    add_calendar_event,
+    list_calendar_events,
+    delete_calendar_event,
+)
+
 import json
 
 TOOL_FUNCTIONS = {
@@ -44,6 +50,10 @@ TOOL_FUNCTIONS = {
     "add_habit": add_habit,
     "list_habits": list_habits,
     "complete_habit": complete_habit,
+
+    "add_calendar_event": add_calendar_event,
+    "list_calendar_events": list_calendar_events,
+    "delete_calendar_event": delete_calendar_event,
 }
 
 

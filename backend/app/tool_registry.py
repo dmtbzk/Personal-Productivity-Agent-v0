@@ -184,6 +184,58 @@ TOOLS = [
             },
             "required": ["habit_id"]
         }
+    },
+    {
+        "type": "function",
+        "name": "add_calendar_event",
+        "description": "Adds a calendar event. Use this when the user wants to schedule, add, or remember an event, meeting, appointment, or deadline.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The event title."
+                },
+                "event_date": {
+                    "type": "string",
+                    "description": "The event date in YYYY-MM-DD format."
+                },
+                "event_time": {
+                    "type": "string",
+                    "description": "The event time in HH:MM format. Leave empty if unknown."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Optional event description."
+                }
+            },
+            "required": ["title", "event_date"]
+        }
+    },
+    {
+        "type": "function",
+        "name": "list_calendar_events",
+        "description": "Lists calendar events. Use this when the user asks about their schedule, calendar, meetings, appointments, deadlines, or upcoming events.",
+        "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
+    },
+    {
+        "type": "function",
+        "name": "delete_calendar_event",
+        "description": "Deletes a calendar event by id. Use this when the user wants to cancel, remove, or delete an event.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "event_id": {
+                    "type": "integer",
+                    "description": "The id of the calendar event to delete."
+                }
+            },
+            "required": ["event_id"]
+        }
     }
 ]
 

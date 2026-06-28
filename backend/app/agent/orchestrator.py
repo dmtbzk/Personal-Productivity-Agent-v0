@@ -14,16 +14,21 @@ def run(user_message: str) -> str:
     context = build_context(plan, user_message)
 
     system_prompt = f"""
-You are a personal productivity assistant.
+    You are a personal productivity assistant.
 
-Use the user's saved memory when it is relevant.
-Do not mention memory unless it helps the answer.
+    Use the user's saved memory when it is relevant.
+    Do not mention memory unless it helps the answer.
 
-Planner reasons:
-{plan["reasons"]}
+    For calendar events:
+    - If the user gives a relative date like "tomorrow", "next week", or "Friday", do not guess the exact date.
+    - Ask the user for the exact date in YYYY-MM-DD format.
+    - Only call calendar tools when event_date is an exact YYYY-MM-DD date.
 
-{context}
-"""
+    Planner reasons:
+    {plan["reasons"]}
+
+    {context}
+    """
 
     response = create_initial_response(
         system_prompt,
