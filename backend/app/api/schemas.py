@@ -10,9 +10,6 @@ class ChatResponse(BaseModel):
     answer: str
 
 
-class TodoCreate(BaseModel):
-    task: str
-
 
 class TodoStatusUpdate(BaseModel):
     status: Literal["todo", "in_progress", "done"]
