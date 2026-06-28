@@ -126,11 +126,7 @@ The goal is to build the architecture behind one.
                              │
         ┌────────────────────┼────────────────────┐
         ▼                    ▼                    ▼
-  LLM Planner         Context Builder        Responder
-        │                    │                    │
-        │                    ▼                    ▼
-        │            Combined Context      OpenAI Responses API
-        │                    │                    │
+  LLM Planner         Context Builder        Responder            
         └────────────────────┴────────────────────┘
                              │
                              ▼
