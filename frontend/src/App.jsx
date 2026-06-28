@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import ChatPage from './components/ChatPage'
 import TodoPage from './components/TodoPage'
 import HabitsPage from './components/HabitsPage'
+import CalendarPage from './components/CalendarPage'
 import './App.css'
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <main className="app-main">
         {page === 'chat'   && <ChatPage />}
         {page === 'tasks'  && <TodoPage />}
-        {page === 'habits' && <HabitsPage />}
+        {page === 'habits'   && <HabitsPage />}
+        {page === 'calendar' && <CalendarPage />}
       </main>
       <Footer />
     </div>

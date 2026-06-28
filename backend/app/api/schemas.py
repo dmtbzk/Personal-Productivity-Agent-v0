@@ -22,6 +22,15 @@ class TodoItem(BaseModel):
     status: str
 
 
+class CalendarEvent(BaseModel):
+    id: int
+    title: str
+    event_date: str
+    event_time: Optional[str]
+    description: Optional[str]
+    created_at: str
+
+
 class HabitItem(BaseModel):
     id: int
     name: str

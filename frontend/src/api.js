@@ -31,3 +31,14 @@ export async function completeHabit(id) {
   if (!res.ok) throw new Error('Failed to complete habit')
   return res.json()
 }
+
+export async function fetchCalendar() {
+  const res = await fetch(`${BASE}/calendar`)
+  if (!res.ok) throw new Error('Failed to fetch calendar')
+  return res.json()
+}
+
+export async function deleteEvent(id) {
+  const res = await fetch(`${BASE}/calendar/${id}`, { method: 'DELETE' })
+  if (!res.ok) throw new Error('Failed to delete event')
+}

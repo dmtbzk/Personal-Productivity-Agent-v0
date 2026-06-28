@@ -16,7 +16,8 @@ function Header({ page, onNavigate }) {
           {[
             { key: 'chat',   label: '💬 Chat' },
             { key: 'tasks',  label: '✓ Tasks' },
-            { key: 'habits', label: '🌱 Habits' },
+            { key: 'habits',   label: '🌱 Habits' },
+            { key: 'calendar', label: '📅 Calendar' },
           ].map(({ key, label }) => (
             <button
               key={key}
