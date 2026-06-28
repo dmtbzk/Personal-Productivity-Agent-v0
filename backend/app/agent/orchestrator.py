@@ -5,10 +5,12 @@ from app.agent.responder import (
 from app.agent.executor import execute_tool_calls
 from app.context.context_builder import build_context
 from app.agent.planner import create_plan
+from app.agent.planner import create_llm_plan
+
 
 
 def run(user_message: str) -> str:
-    plan = create_plan(user_message)
+    plan = create_llm_plan(user_message)
     print("Plan:", plan)
 
     context = build_context(plan, user_message)
