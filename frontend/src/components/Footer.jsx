@@ -5,7 +5,8 @@ function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <span>© {new Date().getFullYear()} Productivity Agent</span>
-        <span>Powered by FastAPI + Claude</span>
+        <span className="footer-sep">·</span>
+        <span>All conversations are private</span>
       </div>
     </footer>
   )

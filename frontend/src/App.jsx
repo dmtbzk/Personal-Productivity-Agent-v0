@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ChatPage from './components/ChatPage'
 import './App.css'
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <div className="app-layout">
       <Header />
       <main className="app-main">
-        {/* sayfalar buraya gelecek */}
+        <ChatPage />
       </main>
       <Footer />
     </div>

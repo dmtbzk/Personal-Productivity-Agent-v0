@@ -4,14 +4,17 @@ function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        <div className="header-logo">
-          <span className="header-logo-icon">🤖</span>
-          <span className="header-logo-text">Productivity Agent</span>
+        <div className="header-brand">
+          <div className="header-icon" aria-hidden="true">⚡</div>
+          <div>
+            <div className="header-title">Productivity Agent</div>
+            <div className="header-subtitle">by Demet Bozkurt</div>
+          </div>
         </div>
-        <nav className="header-nav">
-          <a href="#">Chat</a>
-          <a href="#">Tasks</a>
-        </nav>
+        <div className="header-status">
+          <span className="status-dot" aria-hidden="true" />
+          Online
+        </div>
       </div>
     </header>
   )
