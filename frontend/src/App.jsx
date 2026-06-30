@@ -6,6 +6,7 @@ import TodoPage from './components/TodoPage'
 import HabitsPage from './components/HabitsPage'
 import CalendarPage from './components/CalendarPage'
 import StatsPage from './components/StatsPage'
+import MemoryPage from './components/MemoryPage'
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         {page === 'habits'   && <HabitsPage />}
         {page === 'calendar' && <CalendarPage />}
         {page === 'stats'    && <StatsPage />}
+        {page === 'memory'   && <MemoryPage />}
       </main>
       <Footer />
     </div>

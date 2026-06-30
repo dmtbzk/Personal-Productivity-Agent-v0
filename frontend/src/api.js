@@ -32,6 +32,17 @@ export async function completeHabit(id) {
   return res.json()
 }
 
+export async function fetchMemory() {
+  const res = await fetch(`${BASE}/memory`)
+  if (!res.ok) throw new Error('Failed to fetch memory')
+  return res.json()
+}
+
+export async function deleteMemory(id) {
+  const res = await fetch(`${BASE}/memory/${id}`, { method: 'DELETE' })
+  if (!res.ok) throw new Error('Failed to delete memory')
+}
+
 export async function fetchStats() {
   const res = await fetch(`${BASE}/stats`)
   if (!res.ok) throw new Error('Failed to fetch stats')

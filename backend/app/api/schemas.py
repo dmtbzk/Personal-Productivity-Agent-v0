@@ -22,6 +22,15 @@ class TodoItem(BaseModel):
     status: str
 
 
+class MemoryItem(BaseModel):
+    id: int
+    category: str
+    key: str
+    value: str
+    created_at: str
+    updated_at: str
+
+
 class StatsResponse(BaseModel):
     total_todos: int
     completed_todos: int

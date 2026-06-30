@@ -1,11 +1,12 @@
 from fastapi import APIRouter
 
-from app.api.schemas import ChatRequest, ChatResponse, TodoStatusUpdate, TodoItem, HabitItem, CalendarEvent, StatsResponse
+from app.api.schemas import ChatRequest, ChatResponse, TodoStatusUpdate, TodoItem, HabitItem, CalendarEvent, StatsResponse, MemoryItem
 from app.agent.orchestrator import run
 from app.tools.todo import list_todos, update_todo_status, delete_todo
 from app.tools.habits import list_habits, complete_habit
 from app.tools.calendar import list_calendar_events, delete_calendar_event
 from app.tools.statistics import get_statistics
+from app.tools.memory import get_memory
 from app.tools.habits import list_habits
 from app.tools.todo import list_todos as _list_todos
 from app.database.connection import get_connection
@@ -55,6 +56,21 @@ def get_habits():
 def complete_habit_route(habit_id: int):
     result = complete_habit(habit_id)
     return {"message": result}
+
+
+@router.get("/memory", response_model=list[MemoryItem])
+def get_memory_route():
+    return get_memory()
+
+
+@router.delete("/memory/{memory_id}")
+def delete_memory_route(memory_id: int):
+    from app.database.connection import get_connection
+    conn = get_connection()
+    conn.execute("DELETE FROM memories WHERE id = ?", (memory_id,))
+    conn.commit()
+    conn.close()
+    return {"status": "ok"}
 
 
 @router.get("/stats", response_model=StatsResponse)
